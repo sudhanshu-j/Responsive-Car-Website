@@ -2,7 +2,7 @@
 
 Welcome to the **Responsive Car Website**! This is a modern, interactive, and fully responsive website built to showcase car models, complete with dynamic UI, a Swiper carousel, and scroll-triggered animations. Built using **HTML**, **CSS**, and **JavaScript**, the design adapts seamlessly across all devices.
 
-[🔗 Live Preview](https://responsive-car-website.netlify.app)
+[🔗 Live Preview](https://responsive-car-web.netlify.app)
 
 [📂 GitHub Repository](https://github.com/sudhanshu-j/responsive-car-website)
 
