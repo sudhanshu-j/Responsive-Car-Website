@@ -1,0 +1,375 @@
+<!-- Declare HTML5 document and set the language to English -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Set character encoding to UTF-8 -->
+    <meta charset="UTF-8" />
+
+    <!-- Ensure proper rendering and touch zooming on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Website icon shown in the browser tab -->
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.png"
+      type="image/x-icon"
+    />
+
+    <!-- Load Remix Icon library (used for menu icons, arrows, etc.) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+
+    <!-- Load Swiper slider library CSS (used for carousels) -->
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
+
+    <!-- Load the custom website styling -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- The text shown in the browser tab -->
+    <title>Responsive car website</title>
+  </head>
+
+  <body>
+    <!-- ================= HEADER ================= -->
+    <!-- Sticky navigation bar for page links -->
+    <header class="header" id="header">
+      <nav class="nav container">
+        <!-- Logo that scrolls to top when clicked -->
+        <a href="#" class="nav-logo"> AVENTADOR </a>
+
+        <!-- Mobile and desktop menu -->
+        <div class="nav-menu" id="nav-menu">
+          <!-- Navigation links -->
+          <ul class="nav-list">
+            <li><a href="#home" class="nav-link"> Home </a></li>
+            <li><a href="#about" class="nav-link"> About </a></li>
+            <li><a href="#models" class="nav-link"> Models </a></li>
+            <li><a href="#info" class="nav-link"> Information </a></li>
+            <li><a href="#contact" class="nav-link"> Contact </a></li>
+          </ul>
+
+          <!-- Button to close the nav on mobile -->
+          <div class="nav-close" id="nav-close">
+            <i class="ri-close-large-line"></i>
+            <!-- Close icon -->
+          </div>
+        </div>
+
+        <!-- Mobile menu toggle (hamburger icon) -->
+        <div class="nav-toggle" id="nav-toggle">
+          <i class="ri-menu-fill"></i>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =============== MAIN CONTENT =============== -->
+    <main class="main">
+      <!-- ========== HOME SECTION ========== -->
+      <section class="home grid section" id="home">
+        <!-- Background image behind cars -->
+        <img
+          src="/assets/img/home-bg.png"
+          alt="Home Background Image"
+          class="home-bg"
+        />
+
+        <!-- Gradient overlay on top of background -->
+        <div class="home-gradient"></div>
+
+        <!-- Text shown on top of hero image -->
+        <div class="home-data">
+          <h3 class="home-subtitle">CHOOSE YOUR AVENTADOR</h3>
+          <h1 class="home-title">AVENTADOR</h1>
+        </div>
+
+        <!-- Car image slider -->
+        <div class="home-swiper swiper">
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <article class="home-article swiper-slide">
+              <img
+                src="/assets/img/home-car-1.png"
+                alt="Car image one"
+                class="home-image"
+              />
+            </article>
+
+            <!-- Slide 2 -->
+            <article class="home-article swiper-slide">
+              <img
+                src="/assets/img/home-car-2.png"
+                alt="Car image two"
+                class="home-image"
+              />
+            </article>
+
+            <!-- Slide 3 -->
+            <article class="home-article swiper-slide">
+              <img
+                src="/assets/img/home-car-3.png"
+                alt="Car image three"
+                class="home-image"
+              />
+            </article>
+
+            <!-- Slide 4 -->
+            <article class="home-article swiper-slide">
+              <img
+                src="/assets/img/home-car-4.png"
+                alt="Car image four"
+                class="home-image"
+              />
+            </article>
+          </div>
+        </div>
+
+        <!-- Slider dots/pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- Scroll to next section button -->
+        <a href="#about" class="home-button">
+          <span> START </span>
+          <i class="ri-arrow-down-s-line"></i>
+        </a>
+      </section>
+
+      <!-- ========== ABOUT SECTION ========== -->
+      <section class="about section" id="about">
+        <div class="about-container container grid">
+          <!-- Text and button block -->
+          <div class="about-data">
+            <h2 class="section-title about-title">
+              DESIGNED TO <br />
+              <span>GO BEYOND</span> <br />
+              PERFORMANCE
+            </h2>
+            <p class="about-description">
+              Revolutionary thinking is at the heart of every Lamborghini car
+              idea, whether it is the design inspired by the aerospace industry
+              or the technologies applied to natural aspiration.
+            </p>
+            <!-- Ghost-style call to action button -->
+            <a href="#" class="button ghost-button">
+              DETAILS <i class="ri-arrow-right-s-line"></i>
+            </a>
+          </div>
+
+          <!-- Auto-playing, muted background video -->
+          <div class="about-video">
+            <video
+              src="/assets/img/about-vid.mp4"
+              autoplay
+              muted
+              loop
+              class="about-file"
+            ></video>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== MODELS SECTION ========== -->
+      <section class="models section" id="models">
+        <h2 class="section-title">
+          INSPIRED BY <br />
+          COLORS OF NATURE
+        </h2>
+
+        <div class="models-container container grid">
+          <!-- Individual model card with image and specs -->
+          <article class="models-card">
+            <img
+              src="/assets/img/model-car-1.png"
+              alt="Silver Avantador"
+              class="models-image"
+            />
+            <div class="models-gradient"></div>
+            <div class="models-data">
+              <h3 class="model-name">Silver Aventador</h3>
+              <span class="model-info"> 355km/s </span>
+            </div>
+          </article>
+
+          <!-- Yellow model -->
+          <article class="models-card">
+            <img
+              src="/assets/img/model-car-2.png"
+              alt="Yellow Aventador"
+              class="models-image"
+            />
+            <div class="models-gradient"></div>
+            <div class="models-data">
+              <h3 class="model-name">Yellow Aventador</h3>
+              <span class="model-info"> 355km/s </span>
+            </div>
+          </article>
+
+          <!-- Blue model -->
+          <article class="models-card">
+            <img
+              src="/assets/img/model-car-3.png"
+              alt="Blue Aventador"
+              class="models-image"
+            />
+            <div class="models-gradient"></div>
+            <div class="models-data">
+              <h3 class="model-name">Blue Aventador</h3>
+              <span class="model-info"> 355km/s </span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========== INFO SECTION ========== -->
+      <section class="info section" id="info">
+        <!-- Subtitle above main heading -->
+        <span class="section-subtitle"> CHOOSE YOUR AVENTADOR </span>
+
+        <!-- Title for the performance stats section -->
+        <h2 class="section-title info-title">
+          AVENTADOR LP <br />
+          780-4 ULTIMAE
+        </h2>
+
+        <div class="info-container container grid">
+          <!-- Big number and car image -->
+          <div class="info-content">
+            <h1 class="info-number">780-4</h1>
+            <img
+              src="/assets/img/info-car.png"
+              alt="Car Information Image"
+              class="info-image"
+            />
+          </div>
+
+          <!-- Car specifications -->
+          <div class="info-data">
+            <div class="info-group">
+              <h3>POWER (KW)</h3>
+              <p>780 CV (574 kW) <br />8.500 rpm</p>
+            </div>
+
+            <div class="info-group">
+              <h3>MAX. SPEED</h3>
+              <p>355 km/h</p>
+            </div>
+
+            <div class="info-group">
+              <h3>0-100 KM/H</h3>
+              <p>2.8 - 2.9s</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== CONTACT SECTION ========== -->
+      <section class="contact section" id="contact">
+        <div class="contact-container container grid">
+          <!-- Contact form content -->
+          <div class="contact-content">
+            <h2 class="section-title contact-title">
+              SUBSCRIBE TO GET <br />
+              YOUR AVENTADOR
+            </h2>
+
+            <!-- Form with name and email -->
+            <form class="contact-form grid">
+              <div class="contact-inputs grid">
+                <!-- Name input -->
+                <div class="contact-box">
+                  <label for="name" class="contact-label">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter Your Name"
+                    class="contact-input"
+                  />
+                </div>
+
+                <!-- Email input -->
+                <div class="contact-box">
+                  <label for="email" class="contact-label">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter Your Email"
+                    class="contact-input"
+                  />
+                </div>
+              </div>
+
+              <!-- Submit button -->
+              <button class="button contact-button">
+                Send Email <i class="ri-arrow-right-s-line"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Car image next to form -->
+          <img
+            src="/assets/img/contact-car.png"
+            alt="Contact Car Image"
+            class="contact-image"
+          />
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <div class="footer-container container grid">
+        <!-- Logo link at bottom -->
+        <a href="#" class="footer-logo"> AVENTADOR </a>
+
+        <!-- Links to pages and legal info -->
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link"> Privacy & Legal </a></li>
+          <li><a href="#" class="footer-link"> Contact </a></li>
+          <li><a href="#" class="footer-link"> Locations </a></li>
+          <li><a href="#" class="footer-link"> News </a></li>
+          <li><a href="#" class="footer-link"> Forums </a></li>
+        </ul>
+
+        <!-- Social media icons -->
+        <div class="footer-social">
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            class="social-link"
+          >
+            <i class="ri-facebook-fill"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            class="social-link"
+          >
+            <i class="ri-instagram-line"></i>
+          </a>
+          <a href="https://x.com/?lang=en" target="_blank" class="social-link">
+            <i class="ri-twitter-x-line"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <span class="footer-copy"> &#169; All Rights Reserved </span>
+    </footer>
+
+    <!-- ========== SCROLL UP BUTTON ========== -->
+    <a href="#" class="scrollup" id="scroll-up">
+      <i class="ri-arrow-up-fill"></i>
+    </a>
+
+    <!-- ========== JAVASCRIPT LIBRARIES ========== -->
+    <!-- ScrollReveal animation library -->
+    <script src="/assets/js/scrollreveal.min.js"></script>
+
+    <!-- Swiper.js for the image slider functionality -->
+    <script src="/assets/js/swiper-bundle.min.js"></script>
+
+    <!-- Custom JavaScript to control menu toggle, scroll effects, etc. -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

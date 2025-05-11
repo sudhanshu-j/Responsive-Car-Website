@@ -1,0 +1,964 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap"); /* Import Montserrat font from Google Fonts */
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem; /* Defines the height of the header */
+
+  /*========== Colors ==========*/
+  --first-color: hsl(43, 90%, 50%); /* Main theme color */
+  --first-color-alt: hsl(43, 88%, 48%); /* Alternate shade of the main color */
+  --text-color: hsl(0, 0%, 42%); /* Default text color */
+  --text-color-lighten: hsl(
+    0,
+    0%,
+    92%
+  ); /* Lighter text color for backgrounds */
+  --black-color: hsl(0, 0%, 8%); /* Used for bold text or dark backgrounds */
+  --white-color: hsl(0, 0%, 100%); /* Pure white */
+  --body-color: hsl(0, 0%, 98%); /* Light background color for the body */
+  --body-second-color: hsl(25, 70%, 55%); /* Secondary body background color */
+  --shadow-img: -8px 8px 16px hsla(0, 0%, 0%, 0.2); /* Shadow for images */
+
+  /*========== Font and typography ==========*/
+  --body-font: "Montserrat", sans-serif; /* Sets the body font */
+  --biggest-font-size: 4.5rem; /* Very large text size */
+  --big-font-size: 2.5rem; /* Large heading size */
+  --h1-font-size: 1.5rem; /* H1 font size */
+  --h2-font-size: 1.25rem; /* H2 font size */
+  --h3-font-size: 1rem; /* H3 font size */
+  --normal-font-size: 0.938rem; /* Base font size */
+  --small-font-size: 0.813rem; /* Small text */
+  --smaller-font-size: 0.75rem; /* Extra small text */
+
+  /*========== Font weight ==========*/
+  --font-regular: 400; /* Normal text weight */
+  --font-semi-bold: 600; /* Semi-bold weight */
+  --font-bold: 700; /* Bold font */
+  --font-extra-bold: 800; /* Extra-bold text */
+
+  /*========== z index ==========*/
+  --z-tooltip: 10; /* Z-index for tooltips */
+  --z-fixed: 100; /* Z-index for fixed elements like header */
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1150px) {
+  :root {
+    --biggest-font-size: 10.5rem; /* Larger sizes for big screens */
+    --big-font-size: 5.5rem;
+    --h1-font-size: 3rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box; /* Include padding and border in element's total width/height */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+html {
+  scroll-behavior: smooth; /* Smooth scroll effect */
+}
+
+body,
+input,
+button {
+  font-family: var(--body-font); /* Use Montserrat font */
+  font-size: var(--normal-font-size); /* Set base font size */
+}
+
+body {
+  background-color: var(--body-color); /* Light background color */
+  color: var(--black-color); /* Default text color */
+}
+
+input,
+button {
+  border: none; /* Remove default borders */
+  outline: none; /* Remove focus outline */
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--font-bold); /* Use bold for all headings */
+}
+
+ul {
+  list-style: none; /* Remove default list bullet points */
+}
+
+a {
+  text-decoration: none; /* Remove underline from links */
+}
+
+img {
+  display: block; /* Removes whitespace below images */
+  max-width: 100%; /* Responsive images */
+  height: auto; /* Maintain aspect ratio */
+}
+
+video {
+  max-width: 100%; /* Make videos responsive */
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px; /* Set max width */
+  margin-inline: 1.5rem; /* Horizontal margin */
+}
+
+.grid {
+  display: grid; /* Enable grid layout */
+  gap: 1.5rem; /* Gap between grid items */
+}
+
+.section {
+  padding-block: 5rem 1rem; /* Vertical padding (top 5rem, bottom 1rem) */
+}
+
+.section-title,
+.section-subtitle {
+  text-align: center; /* Center-align text */
+}
+
+.section-title {
+  font-size: var(--h1-font-size); /* Large title font */
+  font-weight: var(--font-extra-bold); /* Extra bold */
+  color: var(--black-color); /* Black color */
+  margin-bottom: 3rem; /* Space below title */
+}
+
+.section-subtitle {
+  display: block; /* Make subtitle a block element */
+  font-size: var(--small-font-size); /* Smaller subtitle */
+  font-weight: var(--font-semi-bold); /* Semi-bold text */
+  color: var(--text-color); /* Slightly lighter text */
+  margin-bottom: 0.5rem; /* Space below subtitle */
+}
+
+.main {
+  overflow: hidden; /* Prevent overflow (e.g. horizontal scroll) */
+}
+
+/*=============== HEADER & NAV ===============*/
+.header {
+  position: fixed; /* Stick header to top */
+  width: 100%; /* Full width */
+  top: 0;
+  left: 0;
+  background-color: transparent; /* Transparent initially */
+  z-index: var(--z-fixed); /* On top of other elements */
+  transition: background-color 0.5s, box-shadow 0.5s; /* Smooth transition */
+}
+
+.nav {
+  position: relative;
+  height: var(--header-height); /* Set nav height */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  color: var(--black-color); /* Logo color */
+  font-weight: var(--font-bold); /* Bold logo text */
+}
+
+.nav-toggle,
+.nav-close {
+  display: inline-flex; /* Flex for icons */
+  font-size: 1.5rem; /* Icon size */
+  cursor: pointer; /* Cursor pointer on hover */
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1150px) {
+  .nav-menu {
+    position: fixed; /* Fixed position for overlay menu */
+    top: -120%; /* Hidden off-screen */
+    left: 0;
+    background-color: var(--body-color); /* Menu background */
+    width: 100%; /* Full width */
+    padding-block: 4rem; /* Vertical padding */
+    box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.2); /* Drop shadow */
+    transition: top 0.5s; /* Slide-in transition */
+  }
+}
+
+.nav-list {
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  row-gap: 1.5rem; /* Gap between items */
+}
+
+.nav-link {
+  position: relative;
+  color: var(--black-color);
+  font-weight: var(--font-semi-bold);
+}
+
+.nav-link::after {
+  content: ""; /* Adds decorative underline */
+  width: 0; /* Hidden by default */
+  height: 2px;
+  background-color: var(--black-color);
+  position: absolute;
+  left: 0;
+  bottom: -0.5rem;
+  transition: width 0.5s;
+}
+
+.nav-link:hover::after {
+  width: 60%; /* Animate underline on hover */
+}
+
+.nav-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+
+/* Show menu */
+.show-menu {
+  top: 0; /* Reveal menu */
+}
+
+/* Change background header */
+.scroll-header {
+  background-color: var(--body-color); /* Add background on scroll */
+  box-shadow: 0 5px 16px hsla(0, 0%, 0%, 0.2); /* Add shadow */
+}
+
+/* Active link */
+.active-link::after {
+  width: 60%; /* Highlight current section link */
+}
+
+/*=============== HOME ===============*/
+/*=============== HOME ===============*/
+.home {
+  position: relative; /* Allows absolutely positioned children inside */
+  height: 730px; /* Fixed height for the home section */
+  background-color: var(--body-second-color); /* Background color */
+}
+
+.home-bg,
+.home-gradient {
+  position: absolute; /* Position background and overlay absolutely */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+}
+
+.home-bg {
+  object-fit: cover; /* Scale image to cover entire container */
+  object-position: center; /* Center the image */
+}
+
+.home-gradient {
+  background: linear-gradient(
+    180deg,
+    /* Vertical gradient from top to bottom */ hsla(25, 70%, 55%, 0) 80%,
+    /* Transparent at top */ hsla(25, 75%, 55%) 100% /* Solid color at bottom */
+  );
+}
+
+.home-data {
+  position: absolute; /* Position over background */
+  top: 17rem; /* Vertical spacing from top */
+  justify-self: center; /* Center horizontally (used with grid) */
+  text-align: center; /* Center text */
+}
+
+.home-subtitle {
+  font-size: var(--small-font-size); /* Smaller subtitle text */
+  font-weight: var(--font-semi-bold); /* Semi-bold */
+  letter-spacing: 1px; /* Space between letters */
+  margin-bottom: 0.25rem; /* Space below subtitle */
+}
+
+.home-title {
+  font-size: var(--big-font-size); /* Large title font */
+  font-weight: var(--font-extra-bold); /* Very bold */
+  letter-spacing: 2px; /* Wide letter spacing */
+  color: var(--white-color); /* White text */
+}
+
+.home-button {
+  position: absolute; /* Fixed position at bottom */
+  bottom: 5rem; /* Distance from bottom of section */
+  justify-self: center; /* Center horizontally */
+  color: var(--white-color); /* White text color */
+  height: 94px; /* Circular button height */
+  width: 94px; /* Circular button width */
+  border: 2px solid var(--white-color); /* White border */
+  border-radius: 50%; /* Make it a circle */
+  display: grid; /* Center inner content */
+  place-content: center; /* Center content both axes */
+  text-align: center; /* Center text */
+  padding-top: 1rem; /* Move content down slightly */
+  z-index: 5; /* Ensure it's above background elements */
+}
+
+.home-button span {
+  font-weight: var(--font-semi-bold); /* Semi-bold label inside button */
+}
+
+.home-button i {
+  font-size: 1.5rem; /* Icon size */
+}
+
+.home-swiper {
+  position: relative; /* Position the swiper relative to home */
+}
+
+.home-image {
+  width: 300px; /* Width of each image */
+  margin-inline: auto; /* Center the image horizontally */
+}
+
+/*=============== SWIPER ===============*/
+.swiper {
+  margin-inline: initial; /* Reset inline margin */
+  align-self: center; /* Center align inside a flex/grid container */
+  margin-bottom: 1rem; /* Space below swiper */
+}
+
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  height: max-content; /* Auto height based on content */
+  top: 30rem; /* Vertical position of bullets */
+  display: flex; /* Align bullets in a row */
+  justify-content: center; /* Center align bullets */
+  column-gap: 1.5rem; /* Spacing between bullets */
+}
+
+.swiper-pagination-bullet {
+  color: var(--white-color); /* Bullet text color */
+  opacity: 1; /* Fully visible */
+  background: none; /* No background circle */
+  font-size: var(--normal-font-size); /* Text size for bullet */
+  font-weight: var(--font-semi-bold); /* Semi-bold bullet */
+  transition: color 0.5s; /* Smooth color change */
+}
+
+.swiper-pagination-bullet-active {
+  color: var(--black-color); /* Highlight active bullet */
+}
+
+/*=============== BUTTON ===============*/
+.button {
+  display: inline-flex; /* Display as inline-flex element */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  column-gap: 0.5rem; /* Space between icon and text */
+  background-color: var(--first-color); /* Button background */
+  color: var(--black-color); /* Text color */
+  padding: 0.75rem 2rem; /* Inner spacing (top/bottom, left/right) */
+  font-weight: var(--font-semi-bold); /* Semi-bold text */
+  box-shadow: 0 5px 12px hsla(43, 88%, 32%, 0.5); /* Drop shadow */
+}
+
+.button i {
+  font-weight: initial; /* Reset font weight */
+  font-size: 1.5rem; /* Icon size */
+  transition: transform 0.5s; /* Animate transform on hover */
+}
+
+.button:hover i {
+  transform: translateX(0.5rem); /* Move icon slightly to the right on hover */
+}
+
+.ghost-button {
+  background-color: transparent; /* Transparent background */
+  box-shadow: none; /* No shadow */
+  border: 2px solid var(--white-color); /* White border */
+  color: var(--white-color); /* White text */
+}
+
+/*=============== ABOUT ===============*/
+.about {
+  background-color: var(--body-second-color); /* Set background color */
+}
+
+.about-container {
+  padding-bottom: 3rem; /* Space below the container */
+  row-gap: 3rem; /* Space between rows */
+}
+
+.about-title {
+  color: var(--white-color); /* White color for the title */
+  margin-bottom: 1rem; /* Space below the title */
+}
+
+.about-title span {
+  color: var(--black-color); /* Span inside title gets black color */
+}
+
+.about-data {
+  text-align: center; /* Center-align text */
+}
+
+.about-description {
+  margin-bottom: 1.5rem; /* Space below the description */
+  color: var(--white-color); /* White color for description */
+}
+
+.about-video {
+  position: relative; /* Position the video relative to its container */
+  width: 250px; /* Set width of the video */
+  height: 320px; /* Set height of the video */
+  justify-self: center; /* Center the video horizontally (if grid) */
+  box-shadow: var(--shadow-img); /* Add shadow to video */
+  display: grid; /* Use grid layout for the video container */
+  overflow: hidden; /* Hide content overflowing from the container */
+  transform: skew(-12deg); /* Skew video for effect */
+}
+
+.about-file {
+  max-width: initial; /* Set max-width to default */
+  height: 320px; /* Set height */
+  transform: skew(12deg); /* Skew the element in the opposite direction */
+  position: absolute; /* Position it absolutely inside the parent */
+  justify-self: center; /* Center the element horizontally */
+}
+
+/*=============== MODELS ===============*/
+.models-container {
+  grid-template-columns: 250px; /* One column of 250px width */
+  justify-content: center; /* Center the content horizontally */
+  row-gap: 2rem; /* Space between rows */
+}
+
+.models-card {
+  position: relative; /* Allow positioning of inner elements */
+  transform: skew(-12deg); /* Apply skew to the card for effect */
+  box-shadow: var(--shadow-img); /* Add shadow around the card */
+}
+
+.models-gradient {
+  position: absolute; /* Position gradient absolutely over the card */
+  top: 0;
+  left: 0;
+  width: 100%; /* Cover full width of the card */
+  height: 100%; /* Cover full height of the card */
+  background: linear-gradient(
+    180deg,
+    /* Vertical gradient */ hsla(0, 0%, 0%, 0) 70%,
+    /* Transparent top */ hsl(0, 0%, 0%) 100% /* Solid black bottom */
+  );
+}
+
+.models-data {
+  position: absolute; /* Position data absolutely inside card */
+  bottom: 1rem; /* Space from the bottom */
+  left: 1.5rem; /* Space from the left */
+  color: var(--white-color); /* White text */
+  transform: skew(12deg); /* Skew the text */
+}
+
+.model-name {
+  font-size: var(--h3-font-size); /* Font size for model name */
+  margin-bottom: 0.25rem; /* Space below model name */
+  transition: transform 0.5s, opacity 0.5s; /* Smooth transition for effects */
+}
+
+.model-info {
+  display: block; /* Make model info block level */
+  font-size: var(--small-font-size); /* Small font size */
+  transition: transform 0.5s 0.2s, opacity 0.5s 0.2s; /* Delay transition */
+}
+
+.model-name,
+.model-info {
+  transform: translateX(5rem); /* Initial position for sliding effect */
+  opacity: 0; /* Start with hidden elements */
+}
+
+.models-card:hover :is(.model-name, .model-info) {
+  transform: translateX(0); /* Move to original position on hover */
+  opacity: 1; /* Fade in on hover */
+}
+
+/*=============== INFO ===============*/
+.info-container {
+  row-gap: 3.5rem; /* Space between rows */
+  padding-bottom: 2.5rem; /* Space below the container */
+}
+
+.info-title {
+  margin-bottom: 5.5rem; /* Space below the title */
+}
+
+.info-content {
+  position: relative; /* Position content relative to its container */
+  display: grid; /* Use grid layout */
+}
+
+.info-number {
+  font-size: var(--biggest-font-size); /* Large number size */
+  color: var(--text-color-lighten); /* Lighter text color */
+  position: absolute; /* Position absolutely inside container */
+  top: -3.5rem; /* Space from the top */
+  justify-self: center; /* Center the number horizontally */
+}
+
+.info-image {
+  width: 300px; /* Set width of the image */
+  justify-self: center; /* Center the image horizontally */
+  z-index: 5; /* Ensure image is above other elements */
+}
+
+.info-data {
+  display: flex; /* Use flexbox for content alignment */
+  justify-content: center; /* Center the content horizontally */
+  column-gap: 1rem; /* Space between items */
+}
+
+.info-group h3 {
+  font-size: var(--small-font-size); /* Small font size for group titles */
+  margin-bottom: 0.5rem; /* Space below each title */
+}
+
+.info-group p {
+  font-size: var(--smaller-font-size); /* Smaller font size for paragraph */
+  color: var(--text-color); /* Standard text color */
+  text-align: center; /* Center-align the text */
+}
+
+/*=============== CONTACT ===============*/
+.contact {
+  background-color: var(--body-second-color); /* Set background color */
+}
+
+.contact-container {
+  row-gap: 3rem; /* Space between rows */
+  padding-bottom: 2rem; /* Space below the container */
+}
+
+.contact-title {
+  color: var(--white-color); /* White title color */
+  margin-bottom: 4rem; /* Space below the title */
+}
+
+.contact-form {
+  row-gap: 2rem; /* Space between form elements */
+}
+
+.contact-inputs {
+  row-gap: 2.5rem; /* Space between input fields */
+}
+
+.contact-box {
+  position: relative; /* Position the box relative to its container */
+  width: 100%; /* Full width */
+  height: 58px; /* Fixed height for the input box */
+}
+
+.contact-input {
+  width: 100%; /* Full width input */
+  height: 100%; /* Full height input */
+  background-color: var(--body-second-color); /* Background color */
+  border: 2px solid var(--white-color); /* White border */
+  font-weight: var(--font-semi-bold); /* Semi-bold text */
+  padding: 0.75rem; /* Padding inside the input */
+  color: var(--white-color); /* White text color */
+}
+
+.contact-input::placeholder {
+  color: var(--white-color); /* White placeholder color */
+}
+
+.contact-label {
+  position: absolute; /* Position label above the input */
+  top: -1.5rem; /* Space from the top */
+  left: 0; /* Align to the left */
+  color: var(--white-color); /* White text color */
+  font-size: var(--smaller-font-size); /* Smaller font size */
+  font-weight: var(--font-semi-bold); /* Semi-bold font */
+}
+
+.contact-input:-webkit-autofill {
+  transition: background-color 6000s, color 6000s; /* Fix issue with autofill background color */
+}
+
+.contact-button {
+  cursor: pointer; /* Pointer cursor for the button */
+}
+
+.contact-image {
+  width: 250px; /* Set width of the contact image */
+  transform: skew(-12deg); /* Apply skew effect */
+  justify-self: center; /* Center the image horizontally */
+  box-shadow: var(--shadow-img); /* Add shadow to image */
+}
+
+/*=============== FOOTER ===============*/
+/*=============== FOOTER ===============*/
+.footer {
+  background-color: var(--body-second-color); /* Set background color */
+  padding-block: 2rem; /* Add padding to top and bottom of the footer */
+}
+
+.footer-container {
+  row-gap: 2rem; /* Space between rows */
+}
+
+.footer-logo {
+  justify-self: flex-start; /* Align logo to the left (if using grid) */
+  color: var(--white-color); /* White color for the logo */
+  font-size: var(--h3-font-size); /* Set font size for the logo */
+  font-weight: var(--font-bold); /* Bold font weight for the logo */
+}
+
+.footer-links {
+  display: flex; /* Use flexbox for links layout */
+  flex-direction: column; /* Arrange links in a column */
+  row-gap: 0.5rem; /* Space between links */
+}
+
+.footer-link {
+  color: var(--white-color); /* White color for the link text */
+}
+
+.footer-social {
+  display: flex; /* Use flexbox for social icons layout */
+  column-gap: 0.75rem; /* Space between social icons */
+}
+
+.social-link {
+  color: var(--white-color); /* White color for social links */
+  font-size: 1.5rem; /* Font size for the social icons */
+  transition: transform 0.5s; /* Smooth transition on hover */
+}
+
+.social-link:hover {
+  transform: translateY(-0.25rem); /* Slightly lift the icon on hover */
+}
+
+.footer-copy {
+  display: block; /* Block-level element for copyright */
+  margin-top: 6rem; /* Space above the copyright text */
+  color: var(--white-color); /* White color for copyright text */
+  text-align: center; /* Center-align the copyright text */
+  font-size: var(--small-font-size); /* Small font size */
+}
+
+/*=============== SCROLL BAR ===============*/
+/* Custom styles for the scrollbar */
+::-webkit-scrollbar {
+  width: 0.6rem; /* Set the width of the scrollbar */
+  background-color: hsl(
+    0,
+    0%,
+    80%
+  ); /* Light background color for the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 60%); /* Darker color for the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(
+    0,
+    0%,
+    50%
+  ); /* Even darker color for the thumb on hover */
+}
+
+/*=============== SCROLL UP ===============*/
+/* Styles for the "scroll up" button */
+.scrollup {
+  position: fixed; /* Fix the button to the screen */
+  right: 1rem; /* Position the button to the right */
+  bottom: -50%; /* Initially place the button off-screen at the bottom */
+  background-color: var(--body-color); /* Background color for the button */
+  box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.2); /* Subtle shadow around the button */
+  color: var(--black-color); /* Black color for the button text */
+  display: inline-flex; /* Inline-flex to align content (if using flexbox) */
+  padding: 6px; /* Padding inside the button */
+  font-size: 1.25rem; /* Font size for the button text */
+  z-index: var(--z-tooltip); /* Layer the button above other content */
+  transition: bottom 0.5s, transform 0.5s; /* Smooth transition for movement and transform */
+}
+
+.scrollup:hover {
+  transform: translateY(-0.5rem); /* Lift the button slightly on hover */
+}
+
+/* Show Scroll Up */
+.show-scroll {
+  bottom: 3rem; /* When the button is visible, place it 3rem from the bottom */
+}
+
+/*=============== GOLD BACKGROUND ===============*/
+/* Change body background color to gold when the class is added */
+body.gold-bg {
+  background-color: #ffd700; /* Gold background color */
+  transition: background-color 0.5s ease-in-out; /* Smooth transition for background color change */
+}
+
+/*=============== BREAKPOINTS ===============*/
+
+/* For small devices (max-width: 320px) */
+@media screen and (max-width: 320px) {
+  .container {
+    margin-inline: 1rem; /* Apply small horizontal margin for better spacing */
+  }
+
+  .home-title {
+    font-size: 2rem; /* Adjust title font size for smaller screens */
+  }
+
+  .home-image {
+    width: 270px; /* Smaller width for the home image */
+  }
+
+  .about-video {
+    width: 200px; /* Smaller width for the about video */
+    height: 250px; /* Adjust height for the about video */
+  }
+
+  .models-container {
+    grid-template-columns: 200px; /* Single column layout for small screens */
+  }
+
+  .info-data {
+    flex-direction: column; /* Stack the info data vertically */
+    align-items: center; /* Center-align the content */
+    row-gap: 1rem; /* Space between items */
+  }
+
+  .contact-image {
+    width: 200px; /* Smaller contact image */
+  }
+}
+
+/* For medium devices (min-width: 576px) */
+@media screen and (min-width: 576px) {
+  .about-container,
+  .contact-container {
+    grid-template-columns: 400px; /* Single column layout for medium devices */
+    justify-content: center; /* Center content horizontally */
+  }
+
+  .footer-container {
+    grid-template-columns: repeat(
+      3,
+      max-content
+    ); /* 3 columns layout for footer */
+    justify-content: space-between; /* Distribute columns evenly */
+    align-items: flex-start; /* Align items to the start of the footer */
+  }
+}
+
+/* For larger devices (min-width: 768px) */
+@media screen and (min-width: 768px) {
+  .models-container {
+    grid-template-columns: repeat(2, 250px); /* Two columns layout for models */
+  }
+
+  .footer-links {
+    flex-direction: row; /* Arrange footer links horizontally */
+    column-gap: 1rem; /* Space between footer links */
+  }
+}
+
+/* For large devices (min-width: 1150px) */
+@media screen and (min-width: 1150px) {
+  .container {
+    margin-inline: auto; /* Center the container on large screens */
+  }
+
+  .section {
+    padding-block: 7rem 2rem; /* More padding for sections */
+  }
+
+  .section-title {
+    margin-bottom: 4rem; /* Space below section titles */
+  }
+
+  .nav {
+    height: calc(
+      var(--header-height) + 2rem
+    ); /* Adjust the height of the nav */
+  }
+
+  .nav-toggle,
+  .nav-close {
+    display: none; /* Hide mobile nav toggle and close buttons on large screens */
+  }
+
+  .nav-list {
+    flex-direction: row; /* Horizontal navigation layout */
+    column-gap: 4rem; /* Space between nav items */
+  }
+
+  .home {
+    height: 840px; /* Adjust height of the home section */
+  }
+
+  .home-subtitle {
+    font-size: var(--normal-font-size); /* Adjust subtitle font size */
+    letter-spacing: 3px; /* Add some letter-spacing */
+  }
+
+  .home-title {
+    letter-spacing: 3px; /* Add letter-spacing to the title */
+  }
+
+  .home-image {
+    width: 600px; /* Larger width for the home image */
+  }
+
+  .home-data {
+    top: 15rem; /* Adjust positioning of home data */
+  }
+
+  .home-button {
+    bottom: 2rem; /* Adjust positioning of the home button */
+  }
+
+  .swiper {
+    margin-block-start: 1rem 0; /* Adjust spacing around swiper */
+  }
+
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    top: 39rem; /* Adjust the position of swiper pagination bullets */
+    column-gap: 2rem; /* Space between pagination bullets */
+  }
+
+  .about-container {
+    grid-template-columns: 400px 450px; /* Two-column layout for about section */
+    align-items: center; /* Center align items */
+    column-gap: 12rem; /* Space between columns */
+    padding-bottom: 5rem; /* Add bottom padding */
+  }
+
+  .about-title,
+  .about-data {
+    text-align: initial; /* Left-align title and data */
+  }
+
+  .about-title {
+    margin-bottom: 1rem; /* Space below the about title */
+  }
+
+  .about-description {
+    margin-bottom: 3.5rem; /* Space below the about description */
+  }
+
+  .about-video {
+    width: 450px; /* Larger width for the about video */
+    height: 570px; /* Larger height for the about video */
+  }
+
+  .about-file {
+    height: 580px; /* Adjust height of the about file */
+  }
+
+  .models-container {
+    grid-template-columns: repeat(
+      3,
+      350px
+    ); /* Three columns layout for models */
+    column-gap: 2rem; /* Space between model items */
+  }
+
+  .models-data {
+    bottom: 2.5rem; /* Adjust positioning of model data */
+    left: 2rem; /* Adjust horizontal position */
+  }
+
+  .model-info {
+    font-size: var(--normal-font-size); /* Adjust font size for model info */
+  }
+
+  .info-container {
+    padding-bottom: 4rem; /* Add bottom padding for info section */
+  }
+
+  .info-title {
+    margin-bottom: 13rem; /* Space below the info title */
+  }
+
+  .info-image {
+    width: 800px; /* Larger width for info image */
+  }
+
+  .info-number {
+    top: -8.5rem; /* Adjust position of info number */
+  }
+
+  .info-data {
+    column-gap: 4rem; /* Space between info data items */
+  }
+
+  .info-group h3 {
+    font-size: var(--h3-font-size); /* Larger font size for info group titles */
+  }
+
+  .info-group p {
+    font-size: var(
+      --normal-font-size
+    ); /* Adjust font size for info paragraphs */
+  }
+
+  .contact-container {
+    grid-template-columns: 450px 500px; /* Two-column layout for contact section */
+    align-items: center; /* Center-align items */
+    column-gap: 8rem; /* Space between columns */
+    padding-bottom: 4rem; /* Add bottom padding */
+  }
+
+  .contact-image {
+    order: -1; /* Reverse the order of the contact image */
+    width: 450px; /* Larger contact image */
+  }
+
+  .contact-title {
+    text-align: initial; /* Left-align contact title */
+  }
+
+  .contact-button {
+    justify-self: flex-start; /* Left-align the contact button */
+  }
+
+  .footer {
+    padding-top: 3rem; /* Add padding to the top of the footer */
+  }
+
+  .footer-logo {
+    font-size: var(--normal-font-size); /* Adjust font size for footer logo */
+  }
+
+  .footer-links {
+    column-gap: 2rem; /* Space between footer links */
+  }
+
+  .footer-social {
+    column-gap: 1rem; /* Space between social icons */
+  }
+
+  .scrollup {
+    right: 3rem; /* Adjust position of the scroll-up button */
+  }
+}
+
+/* For 2K resolutions (2048 x 1152, 2048 x 1536) */
+@media screen and (min-width: 2048px) {
+  body {
+    zoom: 1.4; /* Apply zoom for better scaling on very large screens */
+  }
+}
